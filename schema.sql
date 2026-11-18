@@ -1,0 +1,18 @@
+CREATE DATABASE IF NOT EXISTS anime_watchlist CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE anime_watchlist;
+CREATE TABLE IF NOT EXISTS anime (
+ id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ title VARCHAR(160) NOT NULL,
+ genre VARCHAR(120) NOT NULL DEFAULT '',
+ total_episodes INT NOT NULL DEFAULT 0,
+ watched_episodes INT NOT NULL DEFAULT 0,
+ status VARCHAR(30) NOT NULL DEFAULT 'Plan to Watch',
+ rating DECIMAL(3,1) NULL,
+ is_favorite TINYINT(1) NOT NULL DEFAULT 0,
+ notes TEXT NULL,
+ poster_filename VARCHAR(255) NULL,
+ poster_url VARCHAR(1000) NULL,
+ created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ INDEX idx_anime_title(title), INDEX idx_anime_status(status)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
